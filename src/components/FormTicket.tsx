@@ -1,10 +1,16 @@
 import React from "react";
 
 type props = {
-  onClick: () => void
+  setIsModalRegister: (isModelRegister: false) => void;
 }
 
-const FormTicket: React.FC<props> = ({onClick}) => {
+const FormTicket: React.FC<props> = ({setIsModalRegister}) => {
+
+  const handleBack = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsModalRegister(false)
+  };
+
   return (
     <div className="w-screen h-screen fixed bg-gray-950 opacity-70 flex justify-center items-center">
       <form
@@ -40,12 +46,12 @@ const FormTicket: React.FC<props> = ({onClick}) => {
             className="p-2 border border-purple-950 text-950"
           />
         </div>
-        <button type="submit" className="text-base text-purple-950 font-medium">
+        <button onClick={() => {console.log("ok")}} className="text-base text-purple-950 font-medium">
           Criar solicitação
         </button>
         <button
           className="text-base text-purple-950 font-medium"
-          onClick={() => onClick}
+          onClick={() => {handleBack}}
         >
           Voltar
         </button>
