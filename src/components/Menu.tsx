@@ -10,8 +10,8 @@ const Menu: React.FC<menuProps> = ({onClick}) => {
     <nav 
       className='flex flex-col fixed h-screen top-0 left-0 bg-purple-800 text-gray-100 w-60'
     >
-      <li className='p-4 list-none'>
-        <strong className='text-2xl'>HelpHub</strong>
+      <li className='p-6 list-none'>
+        <strong className='text-3xl'>HelpHub</strong>
       </li>
       <li className='w-full p-4 list-none hover:opacity-70'>
         <Link to="/dashboard" className='text-base'>Dashboard</Link>

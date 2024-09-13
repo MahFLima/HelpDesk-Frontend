@@ -12,9 +12,9 @@ const FormTicket: React.FC<props> = ({setIsModalRegister}) => {
   };
 
   return (
-    <div className="w-screen h-screen fixed bg-gray-950 opacity-70 flex justify-center items-center">
+    <div className="w-screen h-screen fixed bg-gray-500  flex justify-center items-center ">
       <form
-        className=" bg-gray-50 p-10 flex flex-col gap-4"
+        className=" bg-gray-50 p-10 flex flex-col gap-4 rounded-lg shadow-md"
       >
         <div className="flex flex-col gap-2 min-w-96">
           <label
