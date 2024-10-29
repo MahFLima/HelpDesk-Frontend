@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import Menu from "../components/Menu";
-import FormTicket from "../components/FormTicket";
 import LineTicket from "../components/LineTicket";
 import CardTicket from "../components/CardTicket";
 
 const ListTicket: React.FC = () => {
-  const [isModalRegister, setIsModalRegister] = useState(false);
 
   return (
     <div className="flex justify-start bg-gray-200">
-      <Menu onClick={() => setIsModalRegister(true)} />
+      <Menu/>
       <div className="ml-60">
         <strong className="p-6 inline-block text-3xl text-purple-900">
           Solicitações
@@ -66,9 +64,6 @@ const ListTicket: React.FC = () => {
           />
         </CardTicket>
       </div>
-      {isModalRegister && (
-        <FormTicket setIsModalRegister={setIsModalRegister} />
-      )}
     </div>
   );
 };

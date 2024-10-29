@@ -1,16 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-type props = {
-  setIsModalRegister: (isModelRegister: false) => void;
-}
-
-const FormTicket: React.FC<props> = ({setIsModalRegister}) => {
-
-  const handleBack = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setIsModalRegister(false)
-  };
-
+const FormTicket: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <div className="w-screen h-screen fixed bg-gray-500  flex justify-center items-center ">
       <form
@@ -46,12 +38,12 @@ const FormTicket: React.FC<props> = ({setIsModalRegister}) => {
             className="p-2 border border-purple-950 text-950"
           />
         </div>
-        <button onClick={() => {console.log("ok")}} className="text-base text-purple-950 font-medium">
+        <button type="submit" onClick={() => {console.log("ok")}} className="text-base text-purple-950 font-medium">
           Criar solicitação
         </button>
         <button
           className="text-base text-purple-950 font-medium"
-          onClick={() => {handleBack}}
+          onClick={() => {navigate('/dashboard')}}
         >
           Voltar
         </button>

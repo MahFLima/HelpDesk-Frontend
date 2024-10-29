@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import Menu from "../components/Menu";
-import FormTicket from "../components/FormTicket";
 import {
   Chat,
   ChatCenteredDots,
@@ -11,11 +10,10 @@ import CardTicket from "../components/CardTicket";
 import CardInfo from "../components/CardInfo";
 
 const Dashboard: React.FC = () => {
-  const [isModalRegister, setIsModalRegister] = useState(false);
 
   return (
     <div className="flex justify-start h-screen bg-gray-200">
-      <Menu onClick={() => setIsModalRegister(true)} />
+      <Menu />
       <div className="ml-60">
         <strong className="p-6 inline-block text-3xl text-purple-900">
           Dashboard
@@ -49,9 +47,6 @@ const Dashboard: React.FC = () => {
           />
         </CardTicket>
       </div>
-      {isModalRegister && (
-        <FormTicket setIsModalRegister={setIsModalRegister} />
-      )}
     </div>
   );
 };

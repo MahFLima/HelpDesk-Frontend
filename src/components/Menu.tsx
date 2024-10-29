@@ -1,11 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-type menuProps = {
-  onClick: () => void; // Tipagem da função de clique
-}
 
-const Menu: React.FC<menuProps> = ({onClick}) => {
+const Menu: React.FC = () => {
+  const navigate = useNavigate()
   return(
     <nav 
       className='flex flex-col fixed h-screen top-0 left-0 bg-purple-800 text-gray-100 w-60'
@@ -17,7 +15,7 @@ const Menu: React.FC<menuProps> = ({onClick}) => {
         <Link to="/dashboard" className='text-base'>Dashboard</Link>
       </li>
       <li className='w-full p-4 list-none hover:opacity-70'>
-        <button onClick={onClick} className='text-base'>Nova Solicitação</button>
+        <button onClick={() => navigate('/formTicket')} className='text-base'>Nova Solicitação</button>
       </li>
       <li className='p-4 list-none hover:opacity-70'>
         <Link className='text-base' to="/listTicket">Solicitações</Link>

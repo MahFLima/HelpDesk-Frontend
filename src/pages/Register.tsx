@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import Input from "../components/Input";
 
 interface Props{
-  mail: string,
-  password: string
+  nome: string,
+  email: string,
+  senha: string,
+  departamento: string
 }
 
-const Login: React.FC = () => {
-  const [dataLogin, setDataLogin] = useState<Props[]>([])
+const Register: React.FC = () => {
+  const [dataRegister, setDataRegister] = useState<Props[]>([])
 
   function handlerChangeLogin(event: React.FormEvent<HTMLFormElement>) {
     setDataLogin({ ...dataLogin, [event.target.name]: event.target.value });
@@ -17,23 +19,6 @@ const Login: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    fetch("http://localhost:3001/login", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*",
-      },
-      body: JSON.stringify(dataLogin),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        console.log(data.message)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   return (
@@ -42,11 +27,25 @@ const Login: React.FC = () => {
         {/* <!-- header -->   */}
         <div className="text-center my-6">
           <h1 className="text-3xl font-semibold text-gray-700">Sign in</h1>
-          <p className="text-gray-500">Sign in to access your account</p>
+          <p className="text-gray-500">Sign Up</p>
         </div>
         {/* sign-in  */}
         <div className="m-6">
           <form className="mb-4" onSubmit={handleSubmit}>
+            <Input
+              title="Email Address"
+              type="email"
+              name="mail"
+              placeholder="Your email address"
+              handlerChangeLogin={handlerChangeLogin}
+            />
+            <Input
+              title="Password"
+              type="password"
+              name="password"
+              placeholder="Your password"
+              handlerChangeLogin={handlerChangeLogin}
+            />
             <Input
               title="Email Address"
               type="email"
@@ -86,4 +85,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Register;

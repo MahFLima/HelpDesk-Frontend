@@ -9,10 +9,11 @@ const Home: React.FC = () => {
       <div className='flex flex-col max-w-lg gap-4'>
         <strong className='text-4xl text-purple-800'>Bem-vindo ao HelpHub</strong>
         <p className='text-purple-950'>
-          Estamos aqui para ajudar você a resolver qualquer problema ou dúvida que possa ter. Nossa equipe dedicada está pronta para fornecer suporte rápido e eficiente para garantir que suas operações continuem sem interrupções.
+          Estamos aqui para ajudar você a resolver qualquer problema ou dúvida que possa ter. 
+          Nossa equipe dedicada está pronta para fornecer suporte rápido e eficiente para garantir que suas operações continuem sem interrupções.
         </p>
         <Link 
-          to="/dashboard" 
+          to="/login" 
           className='w-48 bg-purple-800 text-gray-100 p-2 text-center hover:bg-purple-900 transition-all rounded-lg'
         >
           Acessar plataforma
