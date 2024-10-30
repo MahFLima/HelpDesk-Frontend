@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 
 interface Props{
@@ -9,6 +9,7 @@ interface Props{
 
 const Login: React.FC = () => {
   const [dataLogin, setDataLogin] = useState<Props[]>([])
+  const navigate = useNavigate()
 
   function handlerChangeLogin(event: React.FormEvent<HTMLFormElement>) {
     setDataLogin({ ...dataLogin, [event.target.name]: event.target.value });
@@ -29,7 +30,7 @@ const Login: React.FC = () => {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data.message)
+        navigate('/dashboard')
       })
       .catch((err) => {
         console.log(err);
@@ -42,40 +43,40 @@ const Login: React.FC = () => {
         {/* <!-- header -->   */}
         <div className="text-center my-6">
           <h1 className="text-3xl font-semibold text-gray-700">Sign in</h1>
-          <p className="text-gray-500">Sign in to access your account</p>
+          <p className="text-gray-500">Faça login para acessar sua conta</p>
         </div>
         {/* sign-in  */}
         <div className="m-6">
           <form className="mb-4" onSubmit={handleSubmit}>
             <Input
-              title="Email Address"
+              title="Email"
               type="email"
               name="mail"
-              placeholder="Your email address"
-              handlerChangeLogin={handlerChangeLogin}
+              placeholder="Informe seu e-mail"
+              handlerChange={handlerChangeLogin}
             />
             <Input
-              title="Password"
+              title="Senha"
               type="password"
               name="password"
-              placeholder="Your password"
-              handlerChangeLogin={handlerChangeLogin}
+              placeholder="Informe sua senha"
+              handlerChange={handlerChangeLogin}
             />
             <div className="mb-6">
               <button
                 type="submit"
                 className="w-full px-3 py-4 text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none duration-100 ease-in-out"
               >
-                Sign in
+                Entrar
               </button>
             </div>
             <p className="text-sm text-center text-gray-400">
-              Don&#x27;t have an account yet? &nbsp;
+                Ainda não tem uma conta? &nbsp;
               <Link
                 to={"/register"}
                 className="font-semibold text-indigo-500 focus:text-indigo-600 focus:outline-none focus:underline"
               >
-                Sign up
+                 Inscrever-se
               </Link>
               .
             </p>
