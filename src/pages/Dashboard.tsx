@@ -1,5 +1,4 @@
 import React from "react";
-import Menu from "../components/Menu";
 import {
   Chat,
   ChatCenteredDots,
@@ -12,9 +11,8 @@ import CardInfo from "../components/CardInfo";
 const Dashboard: React.FC = () => {
 
   return (
-    <div className="flex justify-start h-screen bg-gray-200">
-      <Menu />
-      <div className="ml-60">
+    <div className="pt-5 w-screen flex justify-center h-screen bg-gray-200">
+      <div className="w-full max-w-4xl">
         <strong className="p-6 inline-block text-3xl text-purple-900">
           Dashboard
         </strong>

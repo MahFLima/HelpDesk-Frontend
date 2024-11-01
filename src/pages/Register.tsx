@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 
@@ -14,14 +14,15 @@ const Register: React.FC = () => {
   const [dataRegister, setDataRegister] = useState<Props[]>([]);
   const navigate = useNavigate()
 
-  function handlerChangeRegister(event: React.FormEvent<HTMLFormElement>) {
+  useEffect(() => {
     setDataRegister({...dataRegister, tipo: "user"})
+  },[])
+
+  function handlerChangeRegister(event: React.FormEvent<HTMLFormElement>) {
     setDataRegister({ ...dataRegister, [event.target.name]: event.target.value });
-    console.log(dataRegister);
   }
 
   function createUser(user: Props) {
-    // console.log(JSON.stringify(book))
 
     fetch("http://localhost:3001/user", {
       method: "POST",
@@ -35,17 +36,22 @@ const Register: React.FC = () => {
     })
       .then((resp) => resp.json())
       .then((data) => {
+        if(data.message === "Usuario incluido"){
+          alert(data.message)
+          navigate('/login')
+        }
         alert(data.message)
+        console.log(data)
       })
       .catch((err) => {
-        console.log(err);
+        alert(err)
       });
   }
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setDataRegister({...dataRegister, tipo: "user"})
-    createUser(dataRegister)
+    await createUser(dataRegister)
   }
 
   return (

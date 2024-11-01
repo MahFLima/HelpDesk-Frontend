@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
+import jwt from 'jsonwebtoken'
 
 interface Props{
   mail: string,
@@ -10,6 +11,8 @@ interface Props{
 const Login: React.FC = () => {
   const [dataLogin, setDataLogin] = useState<Props[]>([])
   const navigate = useNavigate()
+  const secretKey = 'M!nh@Ch@v&';
+
 
   function handlerChangeLogin(event: React.FormEvent<HTMLFormElement>) {
     setDataLogin({ ...dataLogin, [event.target.name]: event.target.value });
@@ -30,7 +33,15 @@ const Login: React.FC = () => {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        navigate('/dashboard')
+        if(data.message === 'E-mail ou senha invalida'){
+          alert(data.message)
+        } else if(data.message === 'Informe um email válido'){
+          alert(data.message)
+        } else if(data.message === 'Informe email e senha'){
+          alert(data.message)
+        } else {
+          const vToken = jwt.verify(data.message, secretKey);
+        }
       })
       .catch((err) => {
         console.log(err);
