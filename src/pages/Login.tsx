@@ -40,7 +40,7 @@ const Login: React.FC = () => {
         } else if(data.message === 'Informe email e senha'){
           alert(data.message)
         } else {
-          const vToken = jwt.verify(data.message, secretKey);
+          navigate('/dashboard')
         }
       })
       .catch((err) => {
