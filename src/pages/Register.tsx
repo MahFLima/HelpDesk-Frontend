@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 
@@ -11,15 +11,13 @@ interface Props {
 }
 
 const Register: React.FC = () => {
-  const [dataRegister, setDataRegister] = useState<Props[]>([]);
+  const [dataRegister, setDataRegister] = useState<Props>({nome: "", email: "", senha: "", departamento: "", tipo: "user"});
   const navigate = useNavigate()
 
-  useEffect(() => {
-    setDataRegister({...dataRegister, tipo: "user"})
-  },[])
-
-  function handlerChangeRegister(event: React.FormEvent<HTMLFormElement>) {
-    setDataRegister({ ...dataRegister, [event.target.name]: event.target.value });
+  function handlerChangeRegister(event: React.ChangeEvent<HTMLInputElement>) {
+    const { name, value } = event.target;
+    setDataRegister((prevData) => ({ ...prevData, [name]: value }));
+    console.log(dataRegister)
   }
 
   function createUser(user: Props) {
@@ -39,9 +37,10 @@ const Register: React.FC = () => {
         if(data.message === "Usuario incluido"){
           alert(data.message)
           navigate('/login')
+        } else {
+          alert(data.message)
+          console.log(data)
         }
-        alert(data.message)
-        console.log(data)
       })
       .catch((err) => {
         alert(err)
@@ -50,13 +49,12 @@ const Register: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setDataRegister({...dataRegister, tipo: "user"})
     await createUser(dataRegister)
   }
 
   return (
     <div className="flex justify-center min-h-screen bg-gray-100">
-      <div className="container sm:mt-40 mt-16 my-auto max-w-md border-2 border-gray-200 p-3 bg-white">
+      <div className="container my-auto max-w-md border-2 border-gray-200 p-3 bg-white">
         {/* <!-- header -->   */}
         <div className="text-center my-6">
           <h1 className="text-3xl font-semibold text-gray-700">Crie sua conta</h1>
@@ -96,7 +94,7 @@ const Register: React.FC = () => {
             <div className="mb-6">
               <button
                 type="submit"
-                className="w-full px-3 py-4 text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none duration-100 ease-in-out"
+                className="w-full px-3 py-4 text-white bg-purple-500 rounded-md hover:bg-purple-600 focus:outline-none duration-100 ease-in-out"
               >
                 Registrar
               </button>
@@ -105,7 +103,7 @@ const Register: React.FC = () => {
               Já tem uma conta? Faça login &nbsp;
               <Link
                 to={"/login"}
-                className="font-semibold text-indigo-500 focus:text-indigo-600 focus:outline-none focus:underline"
+                className="font-semibold text-purple-500 focus:text-purple-600 focus:outline-none focus:underline"
               >
                 aqui
               </Link>

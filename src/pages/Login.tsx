@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
-import jwt from 'jsonwebtoken'
 
 interface Props{
   mail: string,
@@ -9,15 +8,14 @@ interface Props{
 }
 
 const Login: React.FC = () => {
-  const [dataLogin, setDataLogin] = useState<Props[]>([])
+  const [dataLogin, setDataLogin] = useState<Props>({ mail: "", password: "" });
   const navigate = useNavigate()
-  const secretKey = 'M!nh@Ch@v&';
 
-
-  function handlerChangeLogin(event: React.FormEvent<HTMLFormElement>) {
-    setDataLogin({ ...dataLogin, [event.target.name]: event.target.value });
+  const handlerChangeLogin = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setDataLogin((prevData) => ({ ...prevData, [name]: value }));
     console.log(dataLogin)
-  }
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -50,7 +48,7 @@ const Login: React.FC = () => {
 
   return (
     <div className="flex justify-center min-h-screen bg-gray-100">
-      <div className="container sm:mt-40 mt-16 my-auto max-w-md border-2 border-gray-200 p-3 bg-white">
+      <div className="container my-auto max-w-md border-2 border-gray-200 p-3 bg-white">
         {/* <!-- header -->   */}
         <div className="text-center my-6">
           <h1 className="text-3xl font-semibold text-gray-700">Sign in</h1>
@@ -76,7 +74,7 @@ const Login: React.FC = () => {
             <div className="mb-6">
               <button
                 type="submit"
-                className="w-full px-3 py-4 text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none duration-100 ease-in-out"
+                className="w-full px-3 py-4 text-white bg-purple-500 rounded-md hover:bg-purple-600 focus:outline-none duration-100 ease-in-out"
               >
                 Entrar
               </button>
@@ -85,7 +83,7 @@ const Login: React.FC = () => {
                 Ainda não tem uma conta? &nbsp;
               <Link
                 to={"/register"}
-                className="font-semibold text-indigo-500 focus:text-indigo-600 focus:outline-none focus:underline"
+                className="font-semibold text-purple-500 focus:text-purple-600 focus:outline-none focus:underline"
               >
                  Inscrever-se
               </Link>
