@@ -34,7 +34,7 @@ const Menu: React.FC = () => {
           </Link>
         </li>
       </nav>
-      <nav className="desktop:hidden flex justify-center gap-4 flex-col fixed h-screen top-0 left-0 bg-purple-800 text-gray-100">
+      <nav className="desktop:hidden fixed h-screen top-0 left-0 bg-purple-800 text-gray-100">
         <Link to="/dashboard" className="w-full h-screen p-4 list-none hover:opacity-70">
           <House size={32} />
         </Link>
@@ -50,12 +50,15 @@ const Menu: React.FC = () => {
         >
           <File size={32} />
         </Link>
-        <Link
-          to="/login"
-          className="w-full p-4 list-none hover:opacity-70"
+        <button
+          onClick={() => {
+            localStorage.setItem("token", "");
+            navigate("/login")
+          }}
+          className="hover:opacity-70 mt-4"
         >
           <SignOut size={32} />
-        </Link>
+        </button>
       </nav>
     </>
   );
