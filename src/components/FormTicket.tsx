@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const FormTicket: React.FC = () => {
   const navigate = useNavigate();
   return (
-    <div className="w-screen h-screen fixed bg-gray-500  flex justify-center items-center ">
+    <div className="w-screen h-screen fixed bg-gray-200  flex justify-center items-center ">
       <form
         className=" bg-gray-50 p-10 flex flex-col gap-4 rounded-lg shadow-md"
       >

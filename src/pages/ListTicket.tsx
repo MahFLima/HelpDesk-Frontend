@@ -1,70 +1,19 @@
 import React from "react";
-import Menu from "../components/Menu";
-import LineTicket from "../components/LineTicket";
 import CardTicket from "../components/CardTicket";
 
 const ListTicket: React.FC = () => {
 
   return (
-    <div className="flex justify-start bg-gray-200">
-      <Menu/>
-      <div className="ml-60">
-        <strong className="p-6 inline-block text-3xl text-purple-900">
-          Solicitações
-        </strong>
-        <CardTicket title="Solicitações em Aberto">
-          <LineTicket
-            patrimonio="2323"
-            description="Computador com tela azul"
-            status="Em Atendimento"
-          />
-          <LineTicket
-            patrimonio="2323"
-            description="Computador com tela azul"
-            status="Em Atendimento"
-          />
-          <LineTicket
-            patrimonio="2323"
-            description="Computador com tela azul"
-            status="Em Atendimento"
-          />
-        </CardTicket>
-        <CardTicket title="Solicitações em Andamento">
-          <LineTicket
-            patrimonio="2323"
-            description="Computador com tela azul"
-            status="Em Atendimento"
-          />
-          <LineTicket
-            patrimonio="2323"
-            description="Computador com tela azul"
-            status="Em Atendimento"
-          />
-          <LineTicket
-            patrimonio="2323"
-            description="Computador com tela azul"
-            status="Em Atendimento"
-          />
-        </CardTicket>
-        <CardTicket title="Solicitações Concluidas">
-          <LineTicket
-            patrimonio="2323"
-            description="Computador com tela azul"
-            status="Em Atendimento"
-          />
-          <LineTicket
-            patrimonio="2323"
-            description="Computador com tela azul"
-            status="Em Atendimento"
-          />
-          <LineTicket
-            patrimonio="2323"
-            description="Computador com tela azul"
-            status="Em Atendimento"
-          />
-        </CardTicket>
-      </div>
+    <div className="ml-16 pt-5 w-screen flex justify-center scroll-none">
+    <div className="w-full max-w-4xl px-2 flex flex-col gap-4 mb-4">
+      <strong className="inline-block text-3xl text-purple-900">
+        Minhas Solicitações
+      </strong>
+      <CardTicket title="Solicitações em Aberto"/>
+      <CardTicket title="Solicitações em Andamento"/>
+      <CardTicket title="Solicitações Concluidas"/>
     </div>
+  </div>
   );
 };
 

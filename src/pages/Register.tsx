@@ -17,7 +17,6 @@ const Register: React.FC = () => {
   function handlerChangeRegister(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
     setDataRegister((prevData) => ({ ...prevData, [name]: value }));
-    console.log(dataRegister)
   }
 
   function createUser(user: Props) {

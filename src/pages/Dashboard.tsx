@@ -4,19 +4,18 @@ import {
   ChatCenteredDots,
   CheckSquareOffset,
 } from "@phosphor-icons/react";
-import LineTicket from "../components/LineTicket";
 import CardTicket from "../components/CardTicket";
 import CardInfo from "../components/CardInfo";
 
 const Dashboard: React.FC = () => {
 
   return (
-    <div className="pt-5 w-screen flex justify-center h-screen bg-gray-200">
-      <div className="w-full max-w-4xl">
-        <strong className="p-6 inline-block text-3xl text-purple-900">
+    <div className="ml-16 pt-5 w-screen flex justify-center">
+      <div className="w-full max-w-4xl px-2">
+        <strong className="py-4 inline-block text-3xl text-purple-900">
           Dashboard
         </strong>
-        <section className="flex gap-4 ml-4 flex-wrap mb-5">
+        <section className="flex gap-4 flex-wrap mb-5">
           <CardInfo num_tickets={3} title="Chamados em aberto">
             <Chat size={40} className="text-purple-950" />
           </CardInfo>
@@ -27,23 +26,7 @@ const Dashboard: React.FC = () => {
            <CheckSquareOffset size={40} className="text-purple-950" />
           </CardInfo>
         </section>
-        <CardTicket title="Ultimas solicitações">
-          <LineTicket
-            patrimonio="2323"
-            description="Computador com tela azul"
-            status="Em Atendimento"
-          />
-          <LineTicket
-            patrimonio="2323"
-            description="Computador com tela azul"
-            status="Em Atendimento"
-          />
-          <LineTicket
-            patrimonio="2323"
-            description="Computador com tela azul"
-            status="Em Atendimento"
-          />
-        </CardTicket>
+        <CardTicket title="Ultimas solicitações"/>
       </div>
     </div>
   );

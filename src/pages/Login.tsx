@@ -1,20 +1,29 @@
 import React, {useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
+import { jwtDecode } from "jwt-decode";
 
 interface Props{
   mail: string,
   password: string
 }
 
-const Login: React.FC = () => {
+export interface Payload{
+  id: number,
+  nome: string,
+  email: string,
+  senha: string,
+  departamento: string,
+  tipo: string
+}
+
+const Login: React.FC <{ setIsAuthenticated: (isAuth: boolean) => void }> = ({ setIsAuthenticated }) => {
   const [dataLogin, setDataLogin] = useState<Props>({ mail: "", password: "" });
   const navigate = useNavigate()
 
   const handlerChangeLogin = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setDataLogin((prevData) => ({ ...prevData, [name]: value }));
-    console.log(dataLogin)
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -38,11 +47,18 @@ const Login: React.FC = () => {
         } else if(data.message === 'Informe email e senha'){
           alert(data.message)
         } else {
-          navigate('/dashboard')
+          try{
+            const decoded: Payload | null = jwtDecode(data.message);
+            localStorage.setItem("token", data.message);
+            setIsAuthenticated(true); // Atualiza o estado de autenticação
+            navigate('/dashboard')
+          } catch(err){
+            console.log(err)
+          }
         }
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   };
 
