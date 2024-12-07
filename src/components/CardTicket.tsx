@@ -1,10 +1,19 @@
-import React from "react";
+export interface solicitacaoProps {
+  id: number;
+  numero_patrimonio: string;
+  descricao_problema: string;
+  status: string;
+  created_at: Date;
+  adm_id: number;
+  user_id: number;
+}
 
 interface CardProps {
   title: string;
+  collection: solicitacaoProps[]; // Array de objetos do tipo solicitacaoProps
 }
 
-const CardTicket: React.FC<CardProps> = ({ title }) => {
+const CardTicket: React.FC<CardProps> = ({ title, collection }) => {
   return (
     <section className=" bg-gray-100 p-4 rounded-lg shadow-md min-w-[400px]">
       <strong className="text-xl inline-block text-purple-900 mb-4">
@@ -20,22 +29,25 @@ const CardTicket: React.FC<CardProps> = ({ title }) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="px-6 py-4">10088</td>
-            <td className="px-6 py-4">Teste</td>
-            <td className="px-6 py-4">Em andamento</td>
-            <td className="px-6 py-4 text-blue-700">
-              <a href="#">Acessar</a>
-            </td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4">10088</td>
-            <td className="px-6 py-4">Teste</td>
-            <td className="px-6 py-4">Em andamento</td>
-            <td className="px-6 py-4 text-blue-700">
-              <a href="#">Acessar</a>
-            </td>
-          </tr>
+          {collection &&
+            collection.map((item) => {
+              return (
+                <tr key={item.id}>
+                  <td className="px-6 py-4">
+                    {item.numero_patrimonio}
+                  </td>
+                  <td className="px-6 py-4">
+                    {item.descricao_problema}
+                  </td>
+                  <td className="px-6 py-4">
+                    {item.status}
+                  </td>
+                  <td className="px-6 py-4 text-blue-700">
+                    <a href="#">Acessar</a>
+                  </td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </section>
