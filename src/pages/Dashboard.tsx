@@ -11,9 +11,9 @@ import { Payload } from "./Login";
 
 const Dashboard: React.FC = () => {
   const [dataSolicitacoes, setDataSolicitacoes] = useState([])
-  let countEmAberto = 0
-  let countEmAndamento = 0
-  let countEncerrado = 0
+  const [countEmAberto, setEmAberto] = useState(0)
+  const [countEmAndamento, setEmAndamento] = useState(0)
+  const [countEncerrado, setEncerrado] = useState(0)
 
   useEffect(() => {
     const token: String | null = localStorage.getItem("token");
@@ -37,9 +37,9 @@ const Dashboard: React.FC = () => {
         
         setDataSolicitacoes(data.message);
         
-        countEmAberto = emAberto.length;  // Correção aqui
-        countEmAndamento = emAndamento.length;  // Correção aqui
-        countEncerrado =  encerradas.length;  // Correção aqui
+        setEmAberto(emAberto.length); 
+        setEmAndamento(emAndamento.length);  
+        setEncerrado(encerradas.length);
       })
   },[])
 
@@ -60,7 +60,7 @@ const Dashboard: React.FC = () => {
            <CheckSquareOffset size={40} className="text-purple-950" />
           </CardInfo>
         </section>
-        <CardTicket title="Ultimas solicitações" collection={[]}/>
+        <CardTicket title="Ultimas solicitações" collection={dataSolicitacoes}/>
       </div>
     </div>
   );

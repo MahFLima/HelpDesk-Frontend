@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export interface solicitacaoProps {
   id: number;
   numero_patrimonio: string;
@@ -36,14 +38,14 @@ const CardTicket: React.FC<CardProps> = ({ title, collection }) => {
                   <td className="px-6 py-4">
                     {item.numero_patrimonio}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4  max-w-52 truncate">
                     {item.descricao_problema}
                   </td>
                   <td className="px-6 py-4">
                     {item.status}
                   </td>
                   <td className="px-6 py-4 text-blue-700">
-                    <a href="#">Acessar</a>
+                    <Link to={`/solicitation/${item.id}`}>Acessar</Link>
                   </td>
                 </tr>
               );

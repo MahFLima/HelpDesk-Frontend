@@ -7,23 +7,26 @@ const ListTicket: React.FC = () => {
   const [dataSolicitacoes, setDataSolicitacoes] = useState([])
   
   useEffect(() => {
-    const token: String | null = localStorage.getItem("token");
-    const decoded: Payload | null = jwtDecode(token);
+    const token: string | null = localStorage.getItem('token')
+    const decoded: Payload | null = token ? jwtDecode(token) : null;
+    const dataId = decoded ? decoded.id : 0
 
-    fetch(`http://localhost:3001/solicitacao/user/${decoded?.id}`, {
-      method: "GET",
-      mode: "cors",
-      headers:{
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*",
-      }
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        setDataSolicitacoes(data.message);
-        console.log(data.message);
+    if(dataId !== 0) {
+      fetch(`http://localhost:3001/solicitacao/user/${decoded?.id}`, {
+        method: "GET",
+        mode: "cors",
+        headers:{
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "*",
+        }
       })
+        .then((resp) => resp.json())
+        .then((data) => {
+          setDataSolicitacoes(data.message);
+          console.log(data.message);
+        })
+    }
   },[])
 
   return (

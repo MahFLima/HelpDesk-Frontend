@@ -1,25 +1,24 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
-import { jwtDecode } from "jwt-decode";
 
-interface Props{
-  mail: string,
-  password: string
+interface Props {
+  mail: string;
+  password: string;
 }
 
-export interface Payload{
-  id: number,
-  nome: string,
-  email: string,
-  senha: string,
-  departamento: string,
-  tipo: string
+export interface Payload {
+  id: number;
+  nome: string;
+  email: string;
+  senha: string;
+  departamento: string;
+  tipo: string;
 }
 
-const Login: React.FC <{ setIsAuthenticated: (isAuth: boolean) => void }> = ({ setIsAuthenticated }) => {
+const Login: React.FC = () => {
   const [dataLogin, setDataLogin] = useState<Props>({ mail: "", password: "" });
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handlerChangeLogin = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -28,6 +27,8 @@ const Login: React.FC <{ setIsAuthenticated: (isAuth: boolean) => void }> = ({ s
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    // Envia os dados de login para o servidor
     fetch("http://localhost:3001/login", {
       method: "POST",
       mode: "cors",
@@ -40,20 +41,19 @@ const Login: React.FC <{ setIsAuthenticated: (isAuth: boolean) => void }> = ({ s
     })
       .then((resp) => resp.json())
       .then((data) => {
-        if(data.message === 'E-mail ou senha invalida'){
-          alert(data.message)
-        } else if(data.message === 'Informe um email válido'){
-          alert(data.message)
-        } else if(data.message === 'Informe email e senha'){
-          alert(data.message)
+        if (data.message === 'E-mail ou senha invalida') {
+          alert(data.message);
+        } else if (data.message === 'Informe um email válido') {
+          alert(data.message);
+        } else if (data.message === 'Informe email e senha') {
+          alert(data.message);
         } else {
-          try{
-            const decoded: Payload | null = jwtDecode(data.message);
+          try {
+            console.log(data.message);
             localStorage.setItem("token", data.message);
-            setIsAuthenticated(true); // Atualiza o estado de autenticação
-            navigate('/dashboard')
-          } catch(err){
-            console.log(err)
+            navigate('/dashboard');
+          } catch (err) {
+            console.log("Erro ao processar o token:", err);
           }
         }
       })
@@ -96,14 +96,13 @@ const Login: React.FC <{ setIsAuthenticated: (isAuth: boolean) => void }> = ({ s
               </button>
             </div>
             <p className="text-sm text-center text-gray-400">
-                Ainda não tem uma conta? &nbsp;
+              Ainda não tem uma conta? &nbsp;
               <Link
                 to={"/register"}
                 className="font-semibold text-purple-500 focus:text-purple-600 focus:outline-none focus:underline"
               >
-                 Inscrever-se
+                Inscrever-se
               </Link>
-              .
             </p>
           </form>
         </div>
