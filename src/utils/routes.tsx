@@ -8,11 +8,12 @@ import ListTicket from "../pages/ListTicket";
 import FormTicket from "../components/FormTicket";
 import Menu from "../components/Menu";
 import Solicitation from "../pages/Solicitation";
+import TelaPerfil from "../pages/Perfil";
 
 const AppRoutes = () => {
   const location = useLocation();
 
-  const shouldShowMenu = ["/dashboard", "/listTicket", "/formTicket", "/solicitation/:id"].includes(location.pathname);
+  const shouldShowMenu = ["/dashboard", "/listTicket", "/formTicket", "/perfil"].includes(location.pathname);
 
   return (
     <>
@@ -25,6 +26,7 @@ const AppRoutes = () => {
         <Route path="/listTicket" element={<ListTicket />} />
         <Route path="/formTicket" element={<FormTicket />} />
         <Route path="/solicitation/:id" element={<Solicitation/>} />
+        <Route path="/perfil" element={<TelaPerfil/>} />
       </Routes>
     </>
   );

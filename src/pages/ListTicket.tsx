@@ -23,8 +23,15 @@ const ListTicket: React.FC = () => {
       })
         .then((resp) => resp.json())
         .then((data) => {
-          setDataSolicitacoes(data.message);
+          if(data.message === "Nenhuma solicitação cadastrada"){
+            setDataSolicitacoes([])
+          } else {
+            setDataSolicitacoes(data.message);
+          }
           console.log(data.message);
+        })
+        .catch((err) => {
+          console.log(err);
         })
     }
   },[])
@@ -35,7 +42,7 @@ const ListTicket: React.FC = () => {
       <strong className="inline-block text-3xl text-purple-900">
         Minhas Solicitações
       </strong>
-      <CardTicket title="Solicitações" collection={dataSolicitacoes}/>
+      <CardTicket title="Solicitações" collection={[]}/>
     </div>
   </div>
   );

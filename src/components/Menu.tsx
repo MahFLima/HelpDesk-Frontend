@@ -1,4 +1,4 @@
-import { File, FilePlus, House, SignOut } from "@phosphor-icons/react";
+import { File, FilePlus, House, SignOut, User } from "@phosphor-icons/react";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -26,7 +26,7 @@ const Menu: React.FC = () => {
           </Link>
         </li>
         <li className="p-4 list-none hover:opacity-70">
-          <p className="text-base">Perfil</p>
+          <Link to={'/perfil'} className="text-base">Perfil</Link>
         </li>
         <li className="fixed bottom-0 left-0 p-4 list-none hover:opacity-70">
           <Link className="w-full" to="/">
@@ -49,6 +49,12 @@ const Menu: React.FC = () => {
           className="w-full p-4 list-none hover:opacity-70"
         >
           <File size={32} />
+        </Link>
+        <Link
+          to="/perfil"
+          className="w-full p-4 list-none hover:opacity-70"
+        >
+          <User size={32} />
         </Link>
         <button
           onClick={() => {

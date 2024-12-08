@@ -13,7 +13,7 @@ export interface Payload {
   email: string;
   senha: string;
   departamento: string;
-  tipo: string;
+  tipo: boolean;
 }
 
 const Login: React.FC = () => {
