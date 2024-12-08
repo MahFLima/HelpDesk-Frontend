@@ -11,6 +11,23 @@ const Solicitation: React.FC = () => {
     navigate(-1);
   }
 
+  function deleteSolicitation(){
+    fetch(`http://localhost:3001/solicitacao/${id}`, {
+      method: "DELETE",
+      mode: "cors",
+      headers:{
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+      }
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        alert(data.message)
+        navigate(-1)
+      })
+  }
+
   useEffect(() => {
     fetch(`http://localhost:3001/solicitacao/${id}`, {
       method: "GET",
@@ -25,7 +42,7 @@ const Solicitation: React.FC = () => {
       .then((data) => {
         setDataSolicitation(data.message[0])
       })
-  },[]) 
+  },[])
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center p-4">
@@ -59,6 +76,12 @@ const Solicitation: React.FC = () => {
           onClick={() => handleBack()}
         >
           Voltar
+        </button>
+        <button
+          className="text-base text-gray-100 font-medium bg-purple-950 py-2 hover:bg-purple-800 mt-2 w-28"
+          onClick={() => deleteSolicitation()}
+        >
+          Excluir
         </button>
 
       </div>
